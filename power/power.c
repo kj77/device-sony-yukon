@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2012-2013, The Linux Foundation. All rights reserved.
+ * Copyright (c) 2014, The CyanogenMod Project
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -197,26 +198,19 @@ int __attribute__ ((weak)) power_hint_override(struct power_module *module, powe
 static void power_hint(struct power_module *module, power_hint_t hint,
         void *data)
 {
+    pthread_mutex_lock(&hint_mutex);
+
     /* Check if this hint has been overridden. */
     if (power_hint_override(module, hint, data) == HINT_HANDLED) {
         /* The power_hint has been handled. We can skip the rest. */
-        return;
+        goto out;
     }
 
     switch(hint) {
         case POWER_HINT_VSYNC:
         case POWER_HINT_INTERACTION:
-        break;
         case POWER_HINT_CPU_BOOST:
-#ifdef BOOST_HINT
-        {
-            int duration = (int)data / 1000;
-            int resources[] = {0x702, 0x20B, 0x30B};
-
-            if (duration > 0)
-                interaction(duration, sizeof(resources)/sizeof(resources[0]), resources);
-        }
-#endif
+        case POWER_HINT_SET_PROFILE:
         break;
         case POWER_HINT_VIDEO_ENCODE:
             process_video_encode_hint(data);
@@ -225,6 +219,9 @@ static void power_hint(struct power_module *module, power_hint_t hint,
             process_video_decode_hint(data);
         break;
     }
+
+out:
+    pthread_mutex_unlock(&hint_mutex);
 }
 
 int __attribute__ ((weak)) set_interactive_override(struct power_module *module, int on)
@@ -239,16 +236,17 @@ void set_interactive(struct power_module *module, int on)
     struct video_encode_metadata_t video_encode_metadata;
     int rc;
 
+    pthread_mutex_lock(&hint_mutex);
+
     if (set_interactive_override(module, on) == HINT_HANDLED) {
-        return;
+        goto out;
     }
 
     ALOGI("Got set_interactive hint");
 
     if (get_scaling_governor(governor, sizeof(governor)) == -1) {
         ALOGE("Can't obtain scaling governor.");
-
-        return;
+        goto out;
     }
 
     if (!on) {
@@ -435,6 +433,9 @@ void set_interactive(struct power_module *module, int on)
     }
 
     saved_interactive_mode = !!on;
+
+out:
+    pthread_mutex_unlock(&hint_mutex);
 }
 
 struct power_module HAL_MODULE_INFO_SYM = {
