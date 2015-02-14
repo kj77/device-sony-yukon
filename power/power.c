@@ -212,6 +212,7 @@ static void power_hint(__attribute__((unused)) struct power_module *module, powe
         case POWER_HINT_VSYNC:
         case POWER_HINT_INTERACTION:
         case POWER_HINT_CPU_BOOST:
+        case POWER_HINT_AUDIO:
         case POWER_HINT_SET_PROFILE:
         case POWER_HINT_LOW_POWER:
         break;
@@ -267,7 +268,7 @@ void set_interactive(struct power_module *module, int on)
             }
         } else if ((strncmp(governor, INTERACTIVE_GOVERNOR, strlen(INTERACTIVE_GOVERNOR)) == 0) &&
                 (strlen(governor) == strlen(INTERACTIVE_GOVERNOR))) {
-            int resource_values[] = {TR_MS_50, THREAD_MIGRATION_SYNC_OFF};
+            int resource_values[] = {THREAD_MIGRATION_SYNC_OFF};
 
             if (!display_hint_sent) {
                 perform_hint_action(DISPLAY_STATE_HINT_ID,
