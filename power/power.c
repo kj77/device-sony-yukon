@@ -42,6 +42,7 @@
 #include <utils/Log.h>
 #include <hardware/hardware.h>
 #include <hardware/power.h>
+#include <pthread.h>
 
 #include "utils.h"
 #include "metadata-defs.h"
@@ -60,6 +61,8 @@ static int display_hint_sent;
 static struct hw_module_methods_t power_module_methods = {
     .open = NULL,
 };
+
+static pthread_mutex_t hint_mutex = PTHREAD_MUTEX_INITIALIZER;
 
 static void power_init(__attribute__((unused))struct power_module *module)
 {
