@@ -132,11 +132,44 @@ void vendor_load_properties()
             property_set("telephony.lteOnGsmDevice", "1");
         }
     } else if (hardware == "flamingo") {
-        if (model == "2203") {
+        if (model == "2202") {
+            /* D2202 (Xperia E3 3G) */
+            property_set("ro.product.model", "Xperia E3 3G");
+            property_set("ro.product.device", "D2202);
+            property_set("ro.build.product", "D2202");
+            property_set("ro.telephony.default_network", "0");
+            property_set("persist.radio.multisim.config", "");
+        } else if (model == "2203") {
             /* D2203 (Xperia E3 LTE) */
             property_set("ro.product.model", "Xperia E3");
             property_set("ro.product.device", "D2203");
             property_set("ro.build.product", "D2203");
+            property_set("ro.telephony.default_network", "9");
+            property_set("persist.radio.multisim.config", "");
+            property_set("telephony.lteOnGsmDevice", "1");
+        } else if (model == "2206") {
+            /* D2206 (Xperia E3 LTE) */
+            property_set("ro.product.model", "Xperia E3");
+            property_set("ro.product.device", "D2206");
+            property_set("ro.build.product", "D2206");
+            property_set("ro.telephony.default_network", "9");
+            property_set("persist.radio.multisim.config", "");
+            property_set("telephony.lteOnGsmDevice", "1");
+        } else if (model == "2212") {
+            /* D2212 (Xperia E3 Dual) */
+            property_set("ro.product.model", "Xperia E3 Dual");
+            property_set("ro.product.device", "D2212");
+            property_set("ro.build.product", "D2212");
+            property_set("ro.telephony.default_network", "0,1");
+            property_set("ro.telephony.ril.config", "simactivation");
+            property_set("persist.radio.multisim.config", "dsds");
+            property_set("persist.radio.dont_use_dsd", "true");
+            property_set("persist.radio.plmn_name_cmp", "1");
+         } else {
+            /* D2243 (Xperia E3 LTE) */
+            property_set("ro.product.model", "Xperia E3");
+            property_set("ro.product.device", "D2243");
+            property_set("ro.build.product", "D2243");
             property_set("ro.telephony.default_network", "9");
             property_set("persist.radio.multisim.config", "");
             property_set("telephony.lteOnGsmDevice", "1");
