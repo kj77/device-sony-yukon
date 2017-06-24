@@ -7,9 +7,8 @@ init_daemon_domain(addrsetup)
 # Connect to /dev/socket/tad
 unix_socket_connect(addrsetup, tad, tad)
 
-allow addrsetup bluetooth_data_file:dir rw_dir_perms;
-allow addrsetup bluetooth_data_file:file create_file_perms;
+allow addrsetup { addrsetup self }:capability { chown dac_override fowner fsetid };
 
 allow addrsetup sysfs_addrsetup:file rw_file_perms;
 
-unix_socket_connect(addrsetup, tad, tad)
+allow addrsetup tad:unix_stream_socket connectto;
