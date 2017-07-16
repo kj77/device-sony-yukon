@@ -129,11 +129,10 @@ PRODUCT_PACKAGES += \
     libqcomvoiceprocessingdescriptors \
     libqcompostprocbundle
 
-# FM radio
+# FM
 PRODUCT_PACKAGES += \
-    qcom.fmradio \
-    libqcomfm_jni \
-    FMRecord
+    FMRadio \
+    libfmjni
 
 # GFX
 PRODUCT_PACKAGES += \
