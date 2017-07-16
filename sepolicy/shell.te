@@ -1,4 +1,4 @@
-get_prop(shell, adbsecure_prop)
+#get_prop(shell, adbsecure_prop)
 get_prop(shell, adbtcp_prop)
 get_prop(shell, boot_mode_prop)
 get_prop(shell, device_logging_prop)

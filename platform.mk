@@ -95,8 +95,7 @@ PRODUCT_COPY_FILES += \
 
 # APN list
 PRODUCT_COPY_FILES += \
-    device/sample/etc/old-apns-conf.xml:system/etc/old-apns-conf.xml \
-    device/sample/etc/apns-full-conf.xml:system/etc/apns-conf.xml
+    vendor/du/prebuilt/common/etc/apns-conf.xml:system/etc/apns-conf.xml
 
 # Platform Init
 PRODUCT_PACKAGES += \
@@ -104,7 +103,6 @@ PRODUCT_PACKAGES += \
 
 # NFC packages
 PRODUCT_PACKAGES += \
-    nfc_nci.pn54x.default \
     com.android.nfc_extras \
     NfcNci \
     Tag
@@ -135,7 +133,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     qcom.fmradio \
     libqcomfm_jni \
-    FM2 \
     FMRecord
 
 # GFX
@@ -182,10 +179,6 @@ PRODUCT_PACKAGES += \
     libmmjpeg_interface \
     libmm-qcamera \
     libqomx_core
-
-# Snap
-PRODUCT_PACKAGES += \
-    Snap
 
 # OSS
 PRODUCT_PACKAGES += \
