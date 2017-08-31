@@ -209,6 +209,7 @@ PRODUCT_PACKAGES += \
 # WLAN
 PRODUCT_PACKAGES += \
     p2p_supplicant.conf \
+    wificond \
     hostapd \
     libwpa_client \
     wpa_supplicant \
