@@ -1,5 +1,7 @@
 /*
 Copyright (c) 2013, The Linux Foundation. All rights reserved.
+Copyright (C) 2017 The LineageOS Project
+
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
@@ -37,6 +39,10 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "log.h"
 #include "util.h"
 
+#include <android-base/properties.h>
+
+using android::base::GetProperty;
+
 using namespace std;
 
 #define LTA_MODEL_OFFSET 20
@@ -73,11 +79,11 @@ void vendor_load_properties()
     string device;
     string model;
     
-    platform = property_get("ro.board.platform");
+    platform = GetProperty("ro.board.platform", "");
     if (platform != ANDROID_TARGET)
     return;
 
-    hardware = property_get("ro.boot.hardware");
+    hardware = GetProperty("ro.boot.hardware", "");
     model = get_model_number();
     
     if (hardware == "eagle") {
@@ -162,6 +168,5 @@ void vendor_load_properties()
         }
     }    
 
-    device = property_get("ro.product.device");
-    ERROR("Found model %s setting build properties for %s device\n", model.c_str(), device.c_str());
+    device = GetProperty("ro.product.device", "");
 }
