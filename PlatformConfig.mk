@@ -35,7 +35,7 @@ TARGET_KERNEL_SOURCE := kernel/sony/msm8226
 KERNEL_TOOLCHAIN_PREFIX := arm-linux-androideabi-
 
 BOARD_KERNEL_CMDLINE += console=ttyHSL0,115200,n8
-BOARD_KERNEL_CMDLINE += user_debug=31 androidboot.selinux=enforcing
+BOARD_KERNEL_CMDLINE += user_debug=31 androidboot.selinux=permissive
 BOARD_KERNEL_CMDLINE += msm_rtb.filter=0x3F ehci-hcd.park=3
 BOARD_KERNEL_CMDLINE += dwc3.maximum_speed=high dwc3_msm.prop_chg_detect=Y
 BOARD_KERNEL_CMDLINE += sched_enable_power_aware=1
@@ -140,8 +140,11 @@ DEVICE_PACKAGE_OVERLAYS += device/sony/yukon/overlay
 # System Props
 TARGET_SYSTEM_PROP += device/sony/yukon/system.prop
 
-# SELinux
-include device/qcom/sepolicy/sepolicy.mk
+# Vendor Interface Manifest
+DEVICE_MANIFEST_FILE :=  device/sony/yukon/manifest.xml
 
-BOARD_SEPOLICY_DIRS += device/sony/yukon/sepolicy
+# SELinux
+#include device/qcom/sepolicy/sepolicy.mk
+
+#BOARD_SEPOLICY_DIRS += device/sony/yukon/sepolicy
 

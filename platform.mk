@@ -21,6 +21,10 @@ PRODUCT_COPY_FILES += \
     $(SONY_ROOT)/init.common.rc:root/init.common.rc \
     $(SONY_ROOT)/init.common.usb.rc:root/init.common.usb.rc
 
+# USB HIDL interfaces
+PRODUCT_PACKAGES += \
+    android.hardware.usb@1.0-service
+
 # Media
 PRODUCT_COPY_FILES += \
     $(SONY_ROOT)/system/etc/audio_policy.conf:system/etc/audio_policy.conf \
@@ -55,6 +59,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(SONY_ROOT)/system/usr/keylayout/msm8226-tapan-snd-card_Button_Jack.kl:system/usr/keylayout/msm8226-tapan-snd-card_Button_Jack.kl \
     $(SONY_ROOT)/system/usr/keylayout/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl
+
+# Keymaster HIDL interfaces
+PRODUCT_PACKAGES += \
+    android.hardware.keymaster@3.0-impl
 
 # Platform Specific Permissions
 PRODUCT_COPY_FILES += \
@@ -102,6 +110,10 @@ PRODUCT_PACKAGES += \
     NfcNci \
     Tag
 
+# NFC HIDL interfaces
+PRODUCT_PACKAGES += \
+    android.hardware.nfc@1.0-impl
+
 # Audio
 PRODUCT_PACKAGES += \
     audio.primary.msm8226 \
@@ -117,6 +129,11 @@ PRODUCT_PACKAGES += \
     libaudioroute \
     tinymix
 
+# Audio HIDL interfaces
+PRODUCT_PACKAGES += \
+    android.hardware.audio@2.0-impl \
+    android.hardware.audio.effect@2.0-impl
+
 # Audio effects
 PRODUCT_PACKAGES += \
     libqcomvisualizer \
@@ -125,9 +142,9 @@ PRODUCT_PACKAGES += \
     libqcompostprocbundle
 
 # FM
-PRODUCT_PACKAGES += \
-    FMRadio \
-    libfmjni
+#PRODUCT_PACKAGES += \
+#    FMRadio \
+#    libfmjni
 
 
 # GFX
@@ -140,6 +157,29 @@ PRODUCT_PACKAGES += \
     libqdutils \
     libqdMetaData
 
+# Display HIDL interfaces
+PRODUCT_PACKAGES += \
+    android.hardware.graphics.allocator@2.0-impl \
+    android.hardware.graphics.composer@2.1-impl \
+    android.hardware.graphics.mapper@2.0-impl \
+    android.hardware.memtrack@1.0-impl
+
+# Lights HIDL interfaces
+PRODUCT_PACKAGES += \
+    android.hardware.light@2.0-impl
+
+# Vibrator HIDL interfaces
+PRODUCT_PACKAGES += \
+    android.hardware.vibrator@1.0-impl
+
+# Sensors HIDL interfaces
+PRODUCT_PACKAGES += \
+    android.hardware.sensors@1.0-impl
+
+# Bluetooth HIDL interfaces
+PRODUCT_PACKAGES += \
+    android.hardware.bluetooth@1.0-impl
+
 # OMX
 PRODUCT_PACKAGES += \
     libc2dcolorconvert \
@@ -151,12 +191,16 @@ PRODUCT_PACKAGES += \
     libOmxVenc
 
 # GPS
-PRODUCT_PACKAGES += \
-    gps.msm8226 \
-    libloc_api_v02 \
-    libloc_core \
-    libloc_eng \
-    libgps.utils
+#PRODUCT_PACKAGES += \
+#    gps.msm8226 \
+#    libloc_api_v02 \
+#    libloc_core \
+#    libloc_eng \
+#    libgps.utils
+
+# GPS HIDL interfaces
+#PRODUCT_PACKAGES += \
+#    android.hardware.gnss@1.0-impl
 
 # WLAN
 PRODUCT_PACKAGES += \
@@ -167,6 +211,11 @@ PRODUCT_PACKAGES += \
     wpa_supplicant.conf \
     wcnss_service
 
+# WiFi HIDL interfaces
+PRODUCT_PACKAGES += \
+    android.hardware.wifi@1.0-service
+
+
 # CAMERA
 PRODUCT_PACKAGES += \
     camera.msm8226 \
@@ -174,6 +223,11 @@ PRODUCT_PACKAGES += \
     libmmjpeg_interface \
     libmm-qcamera \
     libqomx_core
+
+# Camera HIDL interfaces
+PRODUCT_PACKAGES += \
+    android.hardware.camera.provider@2.4-impl \
+    camera.device@3.2-impl
 
 # Snap
 PRODUCT_PACKAGES += \
