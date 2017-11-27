@@ -32,10 +32,11 @@ BOARD_KERNEL_TAGS_OFFSET := 0x01E00000
 BOARD_RAMDISK_OFFSET     := 0x02000000
 
 TARGET_KERNEL_SOURCE := kernel/sony/msm8226
-KERNEL_TOOLCHAIN_PREFIX := arm-linux-androideabi-
+KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/linux-x86/arm/arm-eabi-4.8/bin
+KERNEL_TOOLCHAIN_PREFIX := arm-eabi-
 
 BOARD_KERNEL_CMDLINE += console=ttyHSL0,115200,n8
-BOARD_KERNEL_CMDLINE += user_debug=31 androidboot.selinux=enforcing
+BOARD_KERNEL_CMDLINE += user_debug=31 androidboot.selinux=permissive
 BOARD_KERNEL_CMDLINE += msm_rtb.filter=0x3F ehci-hcd.park=3
 BOARD_KERNEL_CMDLINE += dwc3.maximum_speed=high dwc3_msm.prop_chg_detect=Y
 BOARD_KERNEL_CMDLINE += sched_enable_power_aware=1
@@ -90,7 +91,7 @@ TARGET_USE_DEVICE_AUDIO_EFFECTS_CONF := true
 TARGET_USES_QCOM_BSP := true
 TARGET_QCOM_AUDIO_VARIANT := caf-msm8974
 TARGET_QCOM_DISPLAY_VARIANT := caf-msm8974
-TARGET_QCOM_MEDIA_VARIANT := caf-msm8974
+#TARGET_QCOM_MEDIA_VARIANT := caf-msm8974
 
 # GPS definitions for Qualcomm solution
 BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := $(TARGET_BOARD_PLATFORM)
